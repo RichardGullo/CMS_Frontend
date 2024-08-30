@@ -18,7 +18,13 @@ var globalFilter = [];
 
 // On keyup inside search bar, we run this function
 $("#search-bar").on("keyup", function () {
-  if (globalTableArray == undefined || globalTableArray.length < 1) return;
+  if (globalTableArray == undefined || globalTableArray.length <= 0) return;
+
+  if($(this).val() == ""){
+    buildTable(globalTableArray);
+    return;
+  }
+ 
 
   var value = $(this).val();
 
@@ -34,9 +40,8 @@ function searchTable(value, data) {
   let str = value.toLowerCase().replace(/\s+/g, "");
 
   for (var i = 0; i < data.length; i++) {
-    var fname = data[i].first_name.toLowerCase();
-    var lname = data[i].last_name.toLowerCase();
-    var name = fname + lname;
+    let fullname = data[i].name.split(" ");
+    let name = fullname[0].toLowerCase() + fullname[1].toLowerCase();
 
     if (name.includes(str)) {
       filteredData.push(data[i]);
@@ -139,26 +144,24 @@ function buildTable(data) {
   var table = document.getElementById("myTable");
   table.innerHTML = "";
 
-  globalTableArray = result.data;
-
   // Add icon set to each row but hide them
-  for (let i = 0; i < globalTableArray.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     // street, city state, zip country
-    let addressSet1 = globalTableArray[i].address.split(",");
+    let addressSet1 = data[i].address.split(",");
     // city state
     let addressSet2 = addressSet1[1].split(" ");
 
     // zip country
     let addressSet3 = addressSet1[2].split(" ");
 
-    let fullName = `${globalTableArray[i].name}`;
+    let fullName = `${data[i].name}`;
 
     let street = addressSet1[0];
     let city = addressSet2[0];
     let state = addressSet2[1];
     let zip = addressSet3[0];
-    let phone = globalTableArray[i].phone;
-    let email = globalTableArray[i].email;
+    let phone = data[i].phone;
+    let email = data[i].email;
 
     let row = `<tr><td><div>
                         <div class="contact-heading">
