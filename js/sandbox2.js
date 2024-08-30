@@ -163,7 +163,7 @@ function buildTable(data) {
     let phone = data[i].phone;
     let email = data[i].email;
 
-    let row = `<tr><td><div>
+    let row = `<tr data-id=${globalTableArray[i]._id}><td><div>
                         <div class="contact-heading">
                             <span>${fullName}</span>
                             <div class="action-container">
@@ -337,48 +337,72 @@ $("#firstLastName").click(function () {
     $(this).data("order", "last");
 
     if (flag) {
-      globalTableArray = globalTableArray.sort((a, b) =>
-        a.last_name.toLowerCase() > b.last_name.toLowerCase()
+      globalTableArray = globalTableArray.sort((a, b) => {
+        let fullnameA = a.name.split(" ");
+        let fullNameB = b.name.split(" ");
+        return(
+        fullnameA[1].toLowerCase() > fullNameB[1].toLowerCase()
           ? 1
-          : a.last_name.toLowerCase() == b.last_name.toLowerCase()
-          ? a.first_name.toLowerCase() >= b.first_name.toLowerCase()
+          : fullnameA[1].toLowerCase() == fullNameB[1].toLowerCase()
+          ? fullnameA[0].toLowerCase() >= fullNameB[0].toLowerCase()
             ? 1
             : -1
           : -1
-      );
+        );
+      })
+
     } else {
-      globalFilter = globalFilter.sort((a, b) =>
-        a.last_name.toLowerCase() > b.last_name.toLowerCase()
+      globalFilter = globalFilter.sort((a, b) => {
+        let fullnameA = a.name.split(" ");
+        let fullNameB = b.name.split(" ");
+        return (
+          fullnameA[1].toLowerCase() > fullNameB[1].toLowerCase()
           ? 1
-          : a.last_name.toLowerCase() == b.last_name.toLowerCase()
-          ? a.first_name.toLowerCase() >= b.first_name.toLowerCase()
+          : fullnameA[1].toLowerCase() == fullNameB[1].toLowerCase()
+          ? fullnameA[0].toLowerCase() >= fullNameB[0].toLowerCase()
             ? 1
             : -1
           : -1
+        );
+      }
+   
       );
     }
   } else {
     $(this).data("order", "first");
 
     if (flag) {
-      globalTableArray = globalTableArray.sort((a, b) =>
-        a.first_name.toLowerCase() > b.first_name.toLowerCase()
+      globalTableArray = globalTableArray.sort((a, b) => {
+        let fullnameA = a.name.split(" ");
+        let fullNameB = b.name.split(" ");
+        return (
+          fullnameA[0].toLowerCase() > fullNameB[0].toLowerCase()
           ? 1
-          : a.first_name.toLowerCase() == b.first_name.toLowerCase()
-          ? a.last_name.toLowerCase() >= b.last_name.toLowerCase()
+          : fullnameA[0].toLowerCase() == fullNameB[0].toLowerCase()
+          ? fullnameA[1].toLowerCase() >= fullNameB[1].toLowerCase()
             ? 1
             : -1
           : -1
+        );
+      }
+        
       );
     } else {
-      globalFilter = globalFilter.sort((a, b) =>
-        a.first_name.toLowerCase() > b.first_name.toLowerCase()
+      globalFilter = globalFilter.sort((a, b) => {
+        let fullnameA = a.name.split(" ");
+        let fullNameB = b.name.split(" ");
+        
+        return (
+        
+        fullnameA[0].toLowerCase() > fullNameB[0].toLowerCase()
+        ? 1
+        : fullnameA[0].toLowerCase() == fullNameB[0].toLowerCase()
+        ? fullnameA[1].toLowerCase() >= fullNameB[1].toLowerCase()
           ? 1
-          : a.first_name.toLowerCase() == b.first_name.toLowerCase()
-          ? a.last_name.toLowerCase() >= b.last_name.toLowerCase()
-            ? 1
-            : -1
           : -1
+        : -1
+      )}
+        
       );
     }
 
