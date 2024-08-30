@@ -1,0 +1,338 @@
+swagger: '2.0'
+info:
+  description: |
+    cop4331-29
+  version: 1.0.0
+  title: cop4331-29
+
+definitions:
+  Login:
+    type: object
+    required:
+    - login
+    - password
+    properties:
+      login:
+        type: string
+        example: "val"
+      password:
+        type: string
+        example: "698d51a19d8a121ce581499d7b701668"
+  
+  Register:
+    type: object
+    required:
+    - firstName
+    - lastName
+    - password
+    - userEmail
+    - userName
+    properties:
+      firstName:
+        type: string
+        example: "newfirst"
+      lastName:
+        type: string
+        example: "newlast"
+      password:
+        type: string
+        example: "newPass"
+      userEmail:
+        type: string
+        example: "new@email.com"
+      userName:
+        type: string
+        example: "newUser"
+    
+  Delete:
+    type: object
+    required:
+    - userName
+    properties:
+      userName:
+        type: string
+        example: "newUser"
+        
+  ContactsAdd:
+    type: object
+    required:
+    - firstName
+    - lastName
+    - contactEmail
+    - address
+    - phone
+    properties:
+      userName:
+        type: string
+        example: "val"
+      contactEmail:
+        type: string
+        example: "name@email.com"
+      firstName:
+        type: string
+        example: "firstname"
+      lastName:
+        type: string
+        example: "lastname"
+      address:
+        type: string
+        example: "123 Street St"
+      phone:
+        type: string
+        example: "123-4567-9012"
+        
+  ContactDelete:
+    type: object
+    required:
+    - userName
+    properties:
+      userName:
+        type: string
+        example: "val"
+      contactId:
+        type: integer
+        example: 7
+        
+  ContactEdit:
+    type: object
+    required:
+    - contactId
+    - userName
+    - contactEmail
+    - firstName
+    - lastName
+    - address
+    - phone
+    properties:
+      contactId:
+        type: integer
+        example: 13
+      userName:
+        type: string
+        example: "val"
+      contactEmail:
+        type: string
+        example: "name@email.com"
+      firstName:
+        type: string
+        example: "firstname13"
+      lastName:
+        type: string
+        example: "lastname13"
+      address:
+        type: string
+        example: "123 Street Blvd"
+      phone:
+        type: string
+        example: "123-456-3333"
+ 
+  ContactSearch2:
+    type: object
+    required:
+    - userName
+    - firstName
+    - lastName
+    properties:
+      userName:
+        type: string
+        example: "val"
+      firstName:
+        type: string
+        example: "firstname"
+      lastName:
+        type: string
+        example: "lastname"
+        
+ ############################################
+ 
+paths:
+  /Login.php:
+    post:
+      tags:
+      - Users
+      summary: Logs in to the app
+      operationId: doLogin
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: loginItem
+        description: User/pass login info
+        required: true
+        schema:
+          $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: Success
+        405:
+          description: Invalid input
+        404:
+          description: User not found
+          
+  /Register.php:
+    post:
+      tags:
+      - Users
+      summary: Registers a new user
+      operationId: doRegister
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: registerItem
+        description: User info
+        required: true
+        schema:
+          $ref: '#/definitions/Register'
+      responses:
+        200:
+          description: Success
+        405:
+          description: Invalid input
+          
+  /Delete.php:
+    delete:
+      tags:
+      - Users
+      summary: Removes an account
+      operationId: doDelete
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: deletionItem
+        description: Username to delete
+        required: true
+        schema:
+          $ref: '#/definitions/Delete'
+          #type: string
+          #example: "newUser"
+      responses:
+        200:
+          description: Success
+        405:
+          description: Invalid input
+  
+  /ContactAdd.php:
+    post:
+      tags:
+      - Contacts
+      summary: Adds a new contact
+      operationId: doAddContact
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: contactItem
+        description: Contact information
+        required: true
+        schema:
+          $ref: '#/definitions/ContactsAdd'
+      responses:
+        200:
+          description: Success
+        405:
+          description: Invalid input
+          
+  /ContactDelete.php:
+    delete:
+      tags:
+      - Contacts
+      summary: Deletes a contact
+      operationId: doDeleteContact
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: contactDelete
+        description: Delete Contact
+        required: true
+        schema:
+          $ref: '#/definitions/ContactDelete'
+      responses:
+        200:
+          description: Success
+        405:
+          description: Invalid input
+          
+  /ContactEdit.php:
+    post:
+      tags:
+      - Contacts
+      summary: Edits a new contact
+      operationId: doEditContact
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: contactItemEdit
+        description: Edit Contact information
+        required: true
+        schema:
+          $ref: '#/definitions/ContactEdit'
+      responses:
+        200:
+          description: Success
+        405:
+          description: Invalid input  
+  
+  /ContactSearch.php:
+    get:
+      tags:
+      - Contacts
+      summary: Searches contacts
+      operationId: doSearchContacts
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: searchItem
+        type: string
+        description: Search query
+      responses:
+        200:
+          description: Success
+        405:
+          description: Invalid input
+
+  /ContactSearch2.php:
+    post:
+      tags:
+      - Contacts
+      summary: Searches contacts
+      operationId: doSearchContacts2
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: searchItem2
+        description: Search Contacts
+        required: true
+        schema:
+          $ref: '#/definitions/ContactSearch2'
+      responses:
+        200:
+          description: Success
+        405:
+          description: Invalid input
+          
+host: cop4331-29.com
+basePath: /LAMPAPI
+schemes:
+- http

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang = "en">
+<head>
+  <meta name="referrer" content="no-referrer">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS & jQuery-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <!-- JS Scripts & CSS Stylesheet -->
+  
+  <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="./fontawesome/css/all.min.css" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+	<!-- Google Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,500&family=Open+Sans&family=Titillium+Web:ital,wght@0,600;1,600&family=Yantramanav:wght@300&display=swap" rel="stylesheet">
+  <script type="text/javascript">
+	// document.addEventListener('DOMContentLoaded', function()
+	// {
+	// 	readCookie();
+  // }, false);
+  </script>
+
+    <title>Jadar</title>
+</head>
+<body class = "homepage">
+
+  <!-- Wrapper -->
+  <div class="wrapper">
+
+    <!-- Add Contact Sidebar -->
+    <nav class="sidebar add-sidebar">
+
+    <div class="add-header add-info">
+        <h3>Add a New Contact</h3>
+    </div>
+
+    <p class="text-center text-danger d-none" id="addContactError">Error: Please fill all fields</p>
+
+    <form class = "add-info" id = "addContactForm">
+      <div class="form-group">
+        <label for="add-firstname" class="col-form-label">First Name</label>
+        <input type="text" class="form-control" id="add-firstname">
+        <p id = "error-add-firstname"></p>
+      </div>
+      <div class="form-group">
+        <label for="add-lastname" class="col-form-label">Last Name</label>
+          <input type="text" class="form-control" id="add-lastname">
+          <p id = "error-add-lastname"></p>
+      </div>
+      <div class="form-group">
+        <label for="add-phone" class="col-form-label">Phone Number</label>
+          <input type="text" class="form-control" id="add-phone">
+          <p id = "error-add-phone"></p>
+      </div>
+      <div class="form-group">
+        <label for="add-email" class="col-form-label">Email</label>
+          <input type="email" class="form-control" id="add-email">
+          <p id = "error-add-email"></p>
+      </div>
+      <div class="form-group address-group address">
+        <label for="add-address" class="col-form-label">Address</label>
+        <input type="text" class="form-control address-field" id="inputStreet" placeholder="Street">
+
+        <input type="text" class="form-control address-field" id="inputCity" placeholder="City">
+
+        <input type="text" class="form-control address-field" id="inputState" placeholder="State">
+
+        <input type="number" class="form-control address-field" id="inputZip" placeholder="Zip">
+
+        <p id = "error-add-address"></p>
+      </div>
+
+      <div class="sidebar-footer add-info">
+        <button type="submit" class="btn btn-link sidebar-button" id="confirm-add">
+          Confirm
+        </button>
+        <button type="button" class="btn btn-link sidebar-button" id="confirm-cancel-add">
+        Cancel
+        </button>
+      </div>
+  </form>
+
+
+
+</nav>
+
+<!-- Delete Contact Sidebar -->
+<nav class="sidebar delete-sidebar">
+
+<div class="delete-header delete-info">
+    <h3>Are you sure you want to delete this contact?</h3>
+</div>
+
+
+
+
+  <div id = "deleteContactInfo">
+    <div id = "deleteName"></div>
+    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-house-door-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"/>
+      <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+    </svg>
+    <div id = "deleteAddress"></div>
+    <p></p>
+
+    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-telephone-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M2.267.98a1.636 1.636 0 0 1 2.448.152l1.681 2.162c.309.396.418.913.296 1.4l-.513 2.053a.636.636 0 0 0 .167.604L8.65 9.654a.636.636 0 0 0 .604.167l2.052-.513a1.636 1.636 0 0 1 1.401.296l2.162 1.681c.777.604.849 1.753.153 2.448l-.97.97c-.693.693-1.73.998-2.697.658a17.47 17.47 0 0 1-6.571-4.144A17.47 17.47 0 0 1 .639 4.646c-.34-.967-.035-2.004.658-2.698l.97-.969z"/>
+    </svg>
+    <div id = "deletePhoneNumber"></div>
+    <p></p>
+
+    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-envelope-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+    </svg>
+    <div id = "deleteEmail"></div>
+  </div>
+
+  <div class="sidebar-footer delete-info">
+  <button type="button" class="btn btn-link sidebar-button" id="confirm-delete">
+    Confirm
+  </button>
+  <button type="button" class="btn btn-link sidebar-button" id="confirm-cancel-delete">
+  Cancel
+  </button>
+  </div>
+
+</nav>
+
+<!-- Edit Contact Sidebar -->
+<nav class="sidebar edit-sidebar">
+
+  <div class="edit-header edit-info">
+      <h3>Edit a Contact</h3>
+  </div>
+
+  <p class="text-center text-danger d-none" id="editContactError">Error: Please fill all fields</p>
+
+  <form class="edit-info" id = "edit-contact">
+    <div class="form-group">
+      <label for="edit-firstname" class="col-form-label">First Name</label>
+      <input type="text" class="form-control" id="edit-firstname">
+      <p id = "error-edit-firstname"></p>
+
+    </div>
+    <div class="form-group">
+      <label for="edit-lastname" class="col-form-label">Last Name</label>
+        <input type="text" class="form-control" id="edit-lastname">
+        <p id = "error-edit-lastname"></p>
+    </div>
+    <div class="form-group">
+      <label for="edit-phone" class="col-form-label">Phone Number</label>
+        <input type="text" class="form-control" id="edit-phone" maxlength = "16">
+        <p id = "error-edit-phone"></p>
+    </div>
+    <div class="form-group">
+      <label for="edit-email" class="col-form-label">Email</label>
+        <input type="email" class="form-control" id="edit-email">
+        <p id = "error-edit-email"></p>
+    </div>
+    <div class="form-group address-group address">
+      <label for="add-address" class="col-form-label">Address</label>
+      <input type="text" class="form-control address-field" id="editStreet" placeholder="Street">
+
+      <input type="text" class="form-control address-field" id="editCity" placeholder="City">
+
+      <input type="text" class="form-control address-field" id="editState" placeholder="State">
+
+      <input type="number" class="form-control address-field" id="editZip" placeholder="Zip">
+
+      <p id = "error-edit-address"></p>
+    </div>
+
+    <div class="sidebar-footer edit-info">
+      <button type="submit" class="btn btn-link sidebar-button" id="confirm-edit">
+        Confirm
+      </button>
+      <button type="button" class="btn btn-link sidebar-button" id="confirm-cancel-edit">
+        Cancel
+      </button>
+    </div>
+  </form>
+
+
+
+</nav>
+
+<!-- Dark overlay -->
+    <div class="overlay"></div>
+
+<div class = "content">
+
+  <!-- Navbar -->
+  <nav class="navbar wrap">
+    <div id="searchBarContainer">
+      <input class="form-control" id="search-bar" type="text" placeholder="Search by name." aria-label="Search">
+      <!-- Filters -->
+      <div class = "filters-inline">
+        <div class="btn-group-sm" role="group" aria-label="Filter buttons">
+          <span class = "filters">Sort By</span>
+          <button type="button" id = "recentlyAdded" class="btn btn-link filters-button">Recently added</button>
+          <button type="button" id = "firstLastName" data-order = "first" class="btn btn-link filters-button">First/Last Name</button>
+          <button type="button" id = "showHide" data-order = "hide" class="btn btn-link filters-button">Show/Hide All</button>
+        </div>
+      </div>
+    </div>
+	<div id="homePageLogo">
+	 Jadar
+	</div>
+    <div class = "homePageHeader" id="homePageHeader">
+		<h2 id = "usernameDisplay">
+			Hi, Name.
+		</h2>
+	  <button type="button" id = "logOut" class="btn btn-link filters-button" onclick="doLogout()">
+		Log Out
+    </button>
+    </div>
+  </nav>
+
+  <!-- Contact book -->
+    
+      <div class = "position-relative">
+          <p class = "contact-table-head"> Your Contact Book </p>
+        
+        <button  type="button" id = "addContact" class="btn btn-link btn-block add-contact" data-target=".add-info">
+          Add a contact
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+          </svg>
+        </button>
+      </div>
+
+
+
+      <div class = "card-transparent contact-table">
+        <div class = "card-body">
+          <table class = "table table-hover">
+
+            <tbody id = "myTable">
+              <!-- Hover Buttons -->
+              <!-- Info -->
+            </tbody>
+            <div id = "loading"></div>
+        </table>
+        </div>
+      </div>
+    
+  
+
+    <!--Back to Top Button -->
+  <div class = "fixedTopButt">
+  <button  id = "topBtn" onclick="topOfPage();">
+    <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-arrow-bar-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/>
+    </svg>
+  </button>
+  </div>
+
+
+
+
+
+</div>
+
+
+
+  </div>
+
+  <!-- Bootstrap & jQuery-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src = "js/sandbox2.js"></script>
+</body>
+</html>
