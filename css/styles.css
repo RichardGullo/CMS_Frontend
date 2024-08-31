@@ -15,6 +15,11 @@ CSS Structure
 6. Hyperlinks
 */
 
+/* Utilities */
+.hidden{
+  display: none;
+}
+
 /* General Body */
 .wrapper
 {
@@ -226,6 +231,11 @@ input[type="deleteInput"]
   color:red;
 }
 
+.spinner-border.text-info{
+  height:1rem;
+  width:1rem;
+  vertical-align: baseline;
+}
 
 /* 3. Register */
 

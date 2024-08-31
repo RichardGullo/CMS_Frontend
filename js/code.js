@@ -25,6 +25,8 @@ async function doLogin(evt) {
   formValidationResult.textContent = "";
   formValidationResult.classList.add('form-validation-error');
 
+  document.querySelector(".loading-spinner-wrapper").classList.remove("hidden");
+
   // Client Validation for Login Form
   if (!validateLogin()) return;
 
@@ -44,6 +46,8 @@ async function doLogin(evt) {
   });
 
   let result = await response.json();
+
+  document.querySelector(".loading-spinner-wrapper").classList.add("hidden");
 
   // Check if any errors from server
   if (!result["success"]) {
