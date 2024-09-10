@@ -25,10 +25,12 @@ async function doLogin(evt) {
   formValidationResult.textContent = "";
   formValidationResult.classList.add('form-validation-error');
 
+    // Client Validation for Login Form
+    if (!validateLogin()) return;
+
   document.querySelector(".loading-spinner-wrapper").classList.remove("hidden");
 
-  // Client Validation for Login Form
-  if (!validateLogin()) return;
+
 
   // Gets values from form fields(username, password, etc)
   const data = {
